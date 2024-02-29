@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -73,10 +74,7 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId = '1', $comment
 });
 // http://127.0.0.1:8000/posts/1/comments/5
 
-Route::get(
-    '/user/profile',
-    [UserProfileController::class, 'show']
-)->name('profile');
+Route::get( '/user/profile',[UserProfileController::class, 'show'])->name('profile');
 
 // Generating URLs...
 // $url = route('profile');
@@ -85,9 +83,9 @@ Route::get(
 
 // route group
 Route::middleware(['first', 'second'])->group(function () {
-    Route::get('/', function () {
+    // Route::get('/', function () {
         // Uses first & second middleware...
-    });
+    // });
     Route::get('/user/profile', function () {
         // Uses first & second middleware...
     });
@@ -123,3 +121,14 @@ Route::resource('photos', PhotoController::class)->except([
 // });
 
 Route::get('/greeting', [WelcomeController::class, 'greeting']);
+
+// Soal Praktikum
+
+Route::get('/user/{id}/name/{name}', function ($userId = '1', $name = 'Tiffanny') {
+    return 'User id ke-' . $userId . " User: " . $name;
+});
+
+Route::get( '/category/food-beverage',[CategoryController::class, 'foodBaverage']);
+Route::get( '/category/beauty-health',[CategoryController::class, 'beautyHealth']);
+Route::get( '/category/home-care',[CategoryController::class, 'homeCare']);
+Route::get( '/category/baby-kid',[CategoryController::class, 'babyKid']);
