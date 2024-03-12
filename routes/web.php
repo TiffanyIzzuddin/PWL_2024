@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +27,9 @@ Route::get('/', function () {
 Route::get('/hello', function () {
     return 'Hello World';
 });
-// Route::get('/hello', [WelcomeController::class,'hello']);
+Route::get('/level', [LevelController::class, 'index']);
+Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/user', [UserController::class, 'index']);
 
 // kode program routing
 Route::get('mahasiswa', function ($id) {
